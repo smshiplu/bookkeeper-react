@@ -62,7 +62,7 @@ export async function deleteTransaction(id) {
   if(sessionData.token) {
     const requestOptions = {
       method: "DELETE",
-      headers: {"Content-Type": "application/json"}
+      headers: {"Content-Type": "application/json", Authorization: `Bearer ${sessionData.token}`}
     }
 
     const response = await fetch(`http://localhost:8000/660/transactions/${id}?`, requestOptions);
