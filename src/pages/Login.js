@@ -17,7 +17,6 @@ export const Login = () => {
         password: e.target.password.value
       }
       const data = await login(authDetail);
-      console.log(data);
       if(data.accessToken) {
         navigate("/");
         toast.success("Login successful!");

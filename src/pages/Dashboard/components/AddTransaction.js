@@ -82,7 +82,7 @@ export const AddTransaction = ({fetchUserTransactions}) => {
           </label>
           <input type="number" name="amount" id="amount" autoComplete="off" className="w-full bg-gray-100 dark:bg-gray-700 p-2 border border-gray-200 dark:border-gray-600 rounded-lg" />
         </div>
-        <button className="bg-blue-600 hover:bg-blue-500 focus:ring-4 p-2 mt-5 rounded-lg">Add Transaction</button>
+        <button className="bg-blue-600 hover:bg-blue-500 text-white font-semibold focus:ring-4 p-2 mt-5 rounded-lg">Add Transaction</button>
       </form>
     </div>
   )

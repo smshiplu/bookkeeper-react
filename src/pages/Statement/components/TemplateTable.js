@@ -41,7 +41,7 @@ export const TemplateTable = ({date, dateRangeTransactions}) => {
           <TemplateTableIncomeTr incomes={incomes} />
           <TemplateTableExpenseTr expenses={expenses} />
           <tr>
-            <td className="border text-right font-semibold">Balance</td>
+            <td className="border text-right font-semibold">Total</td>
             <td className="border font-semibold text-right">{balance}</td>
           </tr> 
         </tbody>
