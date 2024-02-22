@@ -1,0 +1,156 @@
+{
+  "users": [
+    {
+      "email": "nasir@example.com",
+      "password": "$2a$10$8c9Yf2AGoso0Rtxi09.bY.TFLLVfeqAsx/Etmo.qjL2LvPZaGGz.e",
+      "name": "Nasir Uddin",
+      "id": 1
+    }
+  ],
+  "transactions": [
+    {
+      "title": "Salary",
+      "amount": "1000",
+      "user": {
+        "name": "Nasir Uddin",
+        "email": "nasir@example.com",
+        "id": 1
+      },
+      "creation_date": "12/1/2023",
+      "creation_time": "12:00:00 PM",
+      "id": 1
+    },
+    {
+      "title": "House rent",
+      "amount": "-400",
+      "user": {
+        "name": "Nasir Uddin",
+        "email": "nasir@example.com",
+        "id": 1
+      },
+      "creation_date": "12/2/2023",
+      "creation_time": "12:00:00 PM",
+      "id": 2
+    },
+    {
+      "title": "Gas",
+      "amount": "-20",
+      "user": {
+        "name": "Nasir Uddin",
+        "email": "nasir@example.com",
+        "id": 1
+      },
+      "creation_date": "12/2/2023",
+      "creation_time": "12:00:00 PM",
+      "id": 3
+    },
+    {
+      "title": "Electricity",
+      "amount": "-30",
+      "user": {
+        "name": "Nasir Uddin",
+        "email": "nasir@example.com",
+        "id": 1
+      },
+      "creation_date": "12/2/2023",
+      "creation_time": "12:00:00 PM",
+      "id": 4
+    },
+    {
+      "title": "water",
+      "amount": "-15",
+      "user": {
+        "name": "Nasir Uddin",
+        "email": "nasir@example.com",
+        "id": 1
+      },
+      "creation_date": "12/2/2023",
+      "creation_time": "12:00:00 PM",
+      "id": 5
+    },
+    {
+      "title": "Telephone",
+      "amount": "-25",
+      "user": {
+        "name": "Nasir Uddin",
+        "email": "nasir@example.com",
+        "id": 1
+      },
+      "creation_date": "12/2/2023",
+      "creation_time": "12:00:00 PM",
+      "id": 6
+    },
+    {
+      "title": "Salary",
+      "amount": "1000",
+      "user": {
+        "name": "Nasir Uddin",
+        "email": "nasir@example.com",
+        "id": 1
+      },
+      "creation_date": "1/1/2024",
+      "creation_time": "12:00:00 PM",
+      "id": 1
+    },
+    {
+      "title": "House rent",
+      "amount": "-400",
+      "user": {
+        "name": "Nasir Uddin",
+        "email": "nasir@example.com",
+        "id": 1
+      },
+      "creation_date": "1/2/2024",
+      "creation_time": "12:00:00 PM",
+      "id": 2
+    },
+    {
+      "title": "Gas",
+      "amount": "-20",
+      "user": {
+        "name": "Nasir Uddin",
+        "email": "nasir@example.com",
+        "id": 1
+      },
+      "creation_date": "1/2/2024",
+      "creation_time": "12:00:00 PM",
+      "id": 3
+    },
+    {
+      "title": "Electricity",
+      "amount": "-30",
+      "user": {
+        "name": "Nasir Uddin",
+        "email": "nasir@example.com",
+        "id": 1
+      },
+      "creation_date": "1/2/2024",
+      "creation_time": "12:00:00 PM",
+      "id": 4
+    },
+    {
+      "title": "water",
+      "amount": "-15",
+      "user": {
+        "name": "Nasir Uddin",
+        "email": "nasir@example.com",
+        "id": 1
+      },
+      "creation_date": "1/2/2024",
+      "creation_time": "12:00:00 PM",
+      "id": 5
+    },
+    {
+      "title": "Telephone",
+      "amount": "-25",
+      "user": {
+        "name": "Nasir Uddin",
+        "email": "nasir@example.com",
+        "id": 1
+      },
+      "creation_date": "1/2/2024",
+      "creation_time": "12:00:00 PM",
+      "id": 6
+    }
+  ]
+}
