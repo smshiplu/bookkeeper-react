@@ -11,10 +11,13 @@ export const TimelineMonthCard = ({month, year, timelineObject, transactions}) =
   useEffect(() => {
     timelineObject.forEach(item => {
       if(item.month === month && item.year === year) {
-        setDates(item.dates);
+        setDates(item.dates.sort((a, b) => a -b));
       }
     });
+    
   }, [ month, year, timelineObject]);
+
+ 
 
   const textMonth = () => {
     switch(month) {
@@ -112,13 +115,15 @@ export const TimelineMonthCard = ({month, year, timelineObject, transactions}) =
     <li className={`${accordionToggle ? "my-10" : "mb-5"} ms-4`}>
       <div className="absolute w-3 h-3 bg-gray-200 rounded-full mt-1.5 -start-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
       <time className={`${accordionToggle ? "text-lg font-bold text-gray-800 dark:text-gray-100 -mt-10" : "text-sm font-normal mb-1"} leading-none text-gray-500 dark:text-gray-600 capitalize`}>
-        <span>{textMonth()} {year}</span>
-        {accordionToggle ? (<button onClick={() => setAccordionToggle(!accordionToggle)}><FaAngleUp/></button>) : (<button onClick={() => setAccordionToggle(!accordionToggle)}><FaAngleDown/></button>)}
+        <button onClick={() => setAccordionToggle(!accordionToggle)}>
+          {textMonth()} {year}
+          {accordionToggle ? <FaAngleUp/> : <FaAngleDown/>}
+        </button>
       </time>
       {accordionToggle && 
         <ol className="my-5 relative border-s border-gray-200 dark:border-gray-700">                  
           {dates.map((date, idx) => (
-             <TimelineDateCard key={idx} date={date}  month={month} year={year} transactions={transactions}/>
+             <TimelineDateCard key={idx} date={date}  month={month} year={year} transactions={transactions} />
           ))}
         </ol>
       }

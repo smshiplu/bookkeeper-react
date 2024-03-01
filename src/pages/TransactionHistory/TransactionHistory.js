@@ -30,7 +30,7 @@ export const TransactionHistory = () => {
           setLoading(false);
           toast.error(data);
         }
-
+  
       } catch(error) {
         setLoading(false);
         toast.error(error);

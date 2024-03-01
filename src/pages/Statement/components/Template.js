@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { useReactToPrint  } from "react-to-print";
 import { BsPrinter } from "react-icons/bs";
+import { FaFilter } from "react-icons/fa";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
 import { TemplateTable } from "./TemplateTable";
@@ -34,6 +35,36 @@ export const Template = ({setToggleTemplate, fromDate, toDate, dateRangeTransact
     setBalance(totalIncome - totalExpense);
   }, [dateRangeTransactions]); //eslint-disable-line
 
+  const handleFilter = (e) => {
+    let tempTimes = [];
+    switch(e.target.value) {
+      case "default":
+        const dates = dateRangeTransactions.map(item => item["creation_date"]);
+        const allUniqueDates = [...new Set(dates)];
+        setAllDates(allUniqueDates);
+      break;
+
+      case "past-to-present":
+        
+        allDates.forEach(date => {
+          tempTimes.push(new Date(date).getTime());
+        });
+        setAllDates(tempTimes.sort((a,b) => a-b ) );
+      break;
+
+      case "present-to-past":
+        allDates.forEach(date => {
+          tempTimes.push(new Date(date).getTime());
+        }); 
+        setAllDates(tempTimes.sort((a,b) => b-a ) );
+      break;
+
+      default:
+        throw new Error("No Case Found!");
+    }
+
+  }
+
   const handlePrint = useReactToPrint({
     content: () => printRef.current,
     documentTitle: "Bookkeeper"
@@ -41,12 +72,23 @@ export const Template = ({setToggleTemplate, fromDate, toDate, dateRangeTransact
 
   return (
     <div  className="bg-white text-gray-800 p-6 w-full absolute -top-24 left-0 ">
-      <div className="flex items-center justify-end gap-3">
-        <button onClick={handlePrint} title="Print"><BsPrinter /></button>
-        <button onClick={() => setToggleTemplate(false)} title="Close"><IoIosCloseCircleOutline/></button>
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <label htmlFor="sortBy" className="text-sm font-semibold"><FaFilter size={14}/></label>
+          <select onChange={handleFilter} name="sortBy" id="sortBy" className="text-sm p-1 border">
+            <option value="default">Default</option>
+            <option value="past-to-present">Past to Present</option>
+            <option value="present-to-past">Present to Past</option>
+          </select>
+        </div>
+        <div className="flex items-center justify-end gap-3">
+          <button onClick={handlePrint} title="Print"><BsPrinter /></button>
+          <button onClick={() => setToggleTemplate(false)} title="Close"><IoIosCloseCircleOutline/></button>
+        </div>
       </div>
+
       <div ref={printRef} className="p-4 h-full">
-        <h3 className="text-2xl text-center font-semibold underline my-4">Transactions form the date {fromDate} to {toDate} </h3>
+        <h3 className="text-2xl text-center font-semibold underline my-4">Transactions form the date {new Date(fromDate).toLocaleDateString()} to {new Date(toDate).toLocaleDateString()} </h3>
 
         <div className="overflow-auto">
           <table className="my-8 font-bold" align="center">

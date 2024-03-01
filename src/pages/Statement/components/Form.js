@@ -18,19 +18,28 @@ export const Form = ({transactions}) => {
   useEffect(() => {
     const controlFormInput = () => {
       if(transactions.length > 0) {
-        const firstDate = transactions[0].creation_date;
-        const lastDate = transactions[transactions.length - 1].creation_date;
-        const formattedFirstDate = firstDate.split("/");
-        const formattedLastDate = lastDate.split("/");
-      
-        setMinDate(`${formattedFirstDate[2]}-${formattedFirstDate[0].length === 1 ?  `0${formattedFirstDate[0]}` : formattedFirstDate[0] }-${formattedFirstDate[1].length === 1 ? `0${formattedFirstDate[1]}` : formattedFirstDate[1]}`);
-  
-        setMaxDate(`${formattedLastDate[2]}-${formattedLastDate[0].length === 1 ? `0${formattedLastDate[0]}` : formattedLastDate[0]}-${formattedLastDate[1].length === 1 ? `0${formattedLastDate[1]}` : formattedLastDate[1]}`);
+        const dates = transactions.map(item => item["creation_date"]);
+        const uniqueDates = [...new Set(dates)];
+        
+        const timesArr = [];
+        uniqueDates.filter(date => {
+          timesArr.push(new Date(date).getTime());
+        });
+
+        const minTime = Math.min(...timesArr);
+        let tempMinDate = new Date(minTime);
+        tempMinDate.setDate(tempMinDate.getDate() + 1);
+        setMinDate(tempMinDate.toISOString().split("T")[0]);
+
+        const maxTime = Math.max(...timesArr);
+        let tempMaxDate = new Date(maxTime);
+        tempMaxDate.setDate(tempMaxDate.getDate() + 1);
+        setMaxDate(tempMaxDate.toISOString().split("T")[0]);
 
         fromDateRef.current.addEventListener("change", () => {
           toDateRef.current.value = "";
           setTimeout(() => {
-            toDateRef.current.setAttribute("min", fromDateRef.current.value)
+            toDateRef.current.setAttribute("min", fromDateRef.current.value);
             toDateRef.current.removeAttribute("disabled");
           }, 300);
         });
@@ -46,6 +55,7 @@ export const Form = ({transactions}) => {
     const validation = validate(from, to);
     if(validation) {
       const dateRangList = getDateRangeArr(from, to);
+     
       const transactionsByDates = transactions.filter(item => dateRangList.includes(item.creation_date));
       if(transactionsByDates.length > 0) {
         setDateRangeTransactions(transactionsByDates);

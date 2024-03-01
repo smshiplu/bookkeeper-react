@@ -23,11 +23,10 @@ export const TimelineTabResultCard = ({activeToggle, transactionsAccordingDate})
     }
   }, [activeToggle, transactionsAccordingDate]); //eslint-disable-line
 
-
   switch(activeToggle) {
     case "All":
       return (
-        <TimelineTabContent transactions={transactions} title="All Transaction" />
+        <TimelineTabContent transactions={transactions}  title="All Transaction" />
       )
     break; //eslint-disable-line
 

@@ -51,7 +51,42 @@ export async function getUserTransactions() {
     if(!response.ok) {
       throw {message:response.statusText, status: response.status} //eslint-disable-line
     }
+    const data = await response.json();
+    return data;
+  }
+}
 
+export async function getTransaction(id) {
+  const sessionData = checkSession();
+  if(sessionData.token) {
+    const requestOptions = {
+      method: "GET",
+      headers: {"Content-Type": "application/json", Authorization: `Bearer ${sessionData.token}`}
+    }
+
+    const response = await fetch(`${process.env.REACT_APP_HOST}/660/transactions/${id}?user.id=${sessionData.bkid}`, requestOptions);
+
+    if(!response.ok) {
+      throw {message:response.statusText, status: response.status}; //eslint-disable-line
+    }
+    const data = await response.json();
+    return data;
+  }
+}
+
+export async function editTransaction(id, dataToEdit) {
+  const sessionData = checkSession();
+  if(sessionData.token) {
+    const requestOptions = {
+      method: "PUT",
+      headers: {"Content-Type": "application/json", Authorization: `Bearer ${sessionData.token}`},
+      body: JSON.stringify(dataToEdit)
+    }
+    const response = await fetch(`${process.env.REACT_APP_HOST}/660/transactions/${id}?user.id=${sessionData.bkid}`, requestOptions);
+
+    if (!response.ok) {
+      throw {message: response.statusText, status: response.status} //eslint-disable-line
+    }
     const data = await response.json();
     return data;
   }
@@ -65,11 +100,10 @@ export async function deleteTransaction(id) {
       headers: {"Content-Type": "application/json", Authorization: `Bearer ${sessionData.token}`}
     }
 
-    const response = await fetch(`http://localhost:8000/660/transactions/${id}?`, requestOptions);
+    const response = await fetch(`${process.env.REACT_APP_HOST}/660/transactions/${id}?user.id=${sessionData.bkid}`, requestOptions);
     if(!response.ok) {
       throw {message:response.statusText, status: response.status} //eslint-disable-line
     }
-
     const data = await response.json();
     return data;
   }

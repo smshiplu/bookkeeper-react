@@ -27,11 +27,10 @@ export const OffcanvasLoggedIn = ({setOffcanvasToggle, darkMode, setDarkMode}) =
 
   const handleLogOut = () => {
     logout();
-    setOffcanvasToggle(false);
   }
 
   return (
-    <div className="flex flex-col mt-16 divide-y divide-gray-700 text-sm font-semibold">
+    <div onClick={() => setOffcanvasToggle(false)} className="flex flex-col mt-16 divide-y divide-gray-700 text-sm font-semibold">
       <span className="flex items-center gap-1 p-3 pointer-events-none"><BsPersonCircle/> {user.email}</span>
       <Link to="/" className="flex items-center gap-1 hover:bg-gray-800 p-3"><AiOutlineDashboard /> Dashboard</Link>
       <Link onClick="" to="/transaction-history" className="hover:bg-gray-800 p-3 flex items-center gap-1"><TbCalendarStats /> Transaction History</Link>

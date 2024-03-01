@@ -9,7 +9,7 @@ export const TemplateTable = ({date, dateRangeTransactions}) => {
   const [balance, setBalance] = useState(null);
 
   useEffect(() => {
-    const transactions = dateRangeTransactions.filter(item => item.creation_date === date);
+    const transactions = dateRangeTransactions.filter(item => item.creation_date === new Date(date).toLocaleDateString());
     const tempIncomes = transactions.filter(item => Number(item.amount) > 0 );
     setIncomes(tempIncomes);
 
@@ -35,7 +35,10 @@ export const TemplateTable = ({date, dateRangeTransactions}) => {
       <table className="w-full my-5 border" cellPadding={5}>
         <tbody>
           <tr>
-            <td className="w-5/6 font-bold">{date}</td>
+            <td className="w-5/6 font-bold">{
+            // new Date(date).toISOString().split("T")[0]
+            new Date(date).toLocaleDateString()
+            }</td>
             <td className="w-1/6"></td>
           </tr>
           <TemplateTableIncomeTr incomes={incomes} />

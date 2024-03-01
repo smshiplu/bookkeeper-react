@@ -4,7 +4,7 @@ import {AiOutlineLogin, AiOutlineDashboard} from "react-icons/ai";
 
 export const OffcanvasLoggedOut = ({setOffcanvasToggle, darkMode, setDarkMode}) => {
   return (
-    <div className="flex flex-col mt-16 divide-y  divide-gray-700 text-sm font-semibold">
+    <div onClick={() => setOffcanvasToggle(false)} className="flex flex-col mt-16 divide-y  divide-gray-700 text-sm font-semibold">
       <Link to="/" className="hover:bg-gray-800 p-3 flex items-center gap-1"><AiOutlineDashboard /> Dashboard</Link>
       <Link to="/register" className="hover:bg-gray-800 p-3 flex items-center gap-1"><BsPersonCircle /> Register</Link>
       <Link to="/login" className="hover:bg-gray-800 p-3 flex items-center gap-1"><AiOutlineLogin /> Login</Link>
