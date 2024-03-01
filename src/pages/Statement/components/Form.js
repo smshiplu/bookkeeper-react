@@ -22,7 +22,7 @@ export const Form = ({transactions}) => {
         const uniqueDates = [...new Set(dates)];
         
         const timesArr = [];
-        uniqueDates.filter(date => {
+        uniqueDates.forEach(date => {
           timesArr.push(new Date(date).getTime());
         });
 
