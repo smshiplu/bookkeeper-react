@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { BiLogIn } from "react-icons/bi";
@@ -5,23 +6,46 @@ import { BiLogIn } from "react-icons/bi";
 import { useDocTitle } from "../hooks";
 import { login } from "../services";
 
+
 export const Login = () => {
   useDocTitle("Login");
   const navigate = useNavigate();
+  const emailInputRef = useRef(null);
+  const passwordInputRef = useRef(null)
 
-  async function handleLogin(e) {
-    e.preventDefault();
+  const handleLogin = async (e) => {
+    e.preventDefault(); 
     try {
       const authDetail = {
-        email: e.target.email.value,
-        password: e.target.password.value
+        email: emailInputRef.current.value,
+        password: passwordInputRef.current.value
       }
       const data = await login(authDetail);
       if(data.accessToken) {
         navigate("/");
         toast.success("Login successful!");
       } else {
-        toast.error(data)
+        toast.error(data);
+      }
+    } catch (error) {
+      toast.error(error.message);
+    }
+  }
+
+  const handleLoginGuest = async () => {
+    emailInputRef.current.value = `${process.env.REACT_APP_GUEST_EMAIL}`;
+    passwordInputRef.current.value = `${process.env.REACT_APP_GUEST_PASSWORD}`;
+    try {
+      const authDetail = {
+        email: emailInputRef.current.value,
+        password: passwordInputRef.current.value
+      }
+      const data = await login(authDetail);
+      if(data.accessToken) {
+        navigate("/");
+        toast.success("Login successful!");
+      } else {
+        toast.error(data);
       }
     } catch (error) {
       toast.error(error.message);
@@ -37,16 +61,16 @@ export const Login = () => {
         <form onSubmit={handleLogin} className="flex flex-col gap-6">
           <div className="flex flex-col gap-1">
             <label htmlFor="email" className="text-sm font-semibold">Your Email:</label>
-            <input type="email" name="email" id="email" placeholder="nasir@example.com" autoComplete="off" className="bg-gray-100 dark:bg-gray-700 p-2 rounded-lg border border-gray-300 dark:border-gray-500" />
+            <input ref={emailInputRef} type="email" name="email" id="email" placeholder="nasir@example.com" autoComplete="off" className="bg-gray-100 dark:bg-gray-700 p-2 rounded-lg border border-gray-300 dark:border-gray-500" />
           </div>
           <div className="flex flex-col gap-1">
             <label htmlFor="password" className="text-sm font-semibold">Your Password:</label>
-            <input type="password" name="password" id="password" autoComplete="off" className="bg-gray-100 dark:bg-gray-700 p-2 rounded-lg border border-gray-300 dark:border-gray-500" />
+            <input ref={passwordInputRef} type="password" name="password" id="password" autoComplete="off" className="bg-gray-100 dark:bg-gray-700 p-2 rounded-lg border border-gray-300 dark:border-gray-500" />
           </div>
           <div className="mt-5">
             <button type="submit" className="w-full md:w-32 bg-blue-600 hover:bg-blue-500 text-white p-2 mb-5 focus:ring-4 rounded-lg">Login <BiLogIn/></button>
 
-            <p>Or <button className="text-blue-600 hover:underline font-semibold">Login as Guest</button></p>
+            <p>Or <button onClick={handleLoginGuest} type="button" className="text-blue-600 hover:underline font-semibold">Login as Guest</button></p>
 
             <p>Don't have an account? <Link to="/register" className="text-blue-600 hover:underline font-semibold">Register Now</Link></p>
           </div>

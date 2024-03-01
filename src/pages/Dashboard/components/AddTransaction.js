@@ -10,12 +10,13 @@ export const AddTransaction = ({fetchUserTransactions}) => {
   const [amountToolTip, setAmountToolTip] = useState(false);
   const [titleToolTip, setTitleToolTip] = useState(false);
   const [keepEntering, setKeepEntering] = useState(false);
-  const [maxDate, setMaxDate] = useState(new Date().toISOString().split("T")[0]);
+  const [maxDate, setMaxDate] = useState(null); 
   const dateInputRef = useRef(null);
   const titleInputRef = useRef(null);
   const amountInputRef = useRef(null);
 
   useEffect(() => {
+    setMaxDate(new Date().toISOString().split("T")[0]);
     dateInputRef.current.focus();
   }, []); //eslint-disable-line
 

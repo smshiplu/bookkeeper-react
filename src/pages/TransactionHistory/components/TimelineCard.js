@@ -15,7 +15,7 @@ export const TimelineCard = ({year, timelineObject, transactions}) => {
       }
     });
     const sortedMonths = tempMonths.sort((a,b) => a -b);
-    setMonths(tempMonths);
+    setMonths(sortedMonths);
   }, [year, timelineObject]);
 
   return (
