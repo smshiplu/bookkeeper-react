@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { FaRegCalendar, FaPlus, FaMinus} from "react-icons/fa";
+
 import { TimelineMonthCard } from "./TimelineMonthCard";
 
 export const TimelineCard = ({year, timelineObject, transactions}) => {
