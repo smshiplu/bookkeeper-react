@@ -32,7 +32,7 @@ export const ExpenseCard = ({expense, fetchUserTransactions}) => {
         <span>${expense.amount.split("-").filter(item => item !== "")[0]}</span>
       </p>
       <p className="flex items-center justify-between">
-        <span className="text-xs text-gray-500 italic">{expense.creation_date} {expense.creation_time}</span>
+        <span className="text-xs text-gray-500 italic">{new Date(expense.creation_date).toLocaleDateString()} {new Date(expense.creation_time).toLocaleTimeString()}</span>
         <span className="flex items-center gap-2">
           <BiEdit onClick={() => showEditModal(expense.id)} className="text-blue-600 hover:text-blue-500 cursor-pointer" title="Edit"/>
           <BiTrash onClick={() => handleDelete(expense.id)} className="text-rose-600 hover:text-rose-500 cursor-pointer" title="Delete"/>

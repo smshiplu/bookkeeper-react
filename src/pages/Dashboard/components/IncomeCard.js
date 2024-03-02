@@ -35,7 +35,7 @@ export const IncomeCard = ({income, fetchUserTransactions}) => {
         <span>${income.amount}</span>
       </p>
       <p className="flex items-center justify-between">
-        <span className="text-xs text-gray-500 italic">{income.creation_date} {income.creation_time}</span>
+        <span className="text-xs text-gray-500 italic">{new Date(income.creation_date).toLocaleDateString()} {new Date(income.creation_time).toLocaleTimeString()}</span>
         <span className="flex items-center gap-2">
           <BiEdit onClick={() => showEditModal(income.id)} className="text-blue-600 hover:text-blue-500 cursor-pointer" title="Edit"/>
           <BiTrash onClick={() => handleDelete(income.id)} className="text-rose-600 hover:text-rose-500 cursor-pointer" title="Delete"/>

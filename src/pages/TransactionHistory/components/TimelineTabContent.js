@@ -22,7 +22,7 @@ export const TimelineTabContent = ({transactions, title}) => {
             <tr id={transaction.id} key={transaction.id} className={`${Number(transaction.amount) < 0 ? "bg-rose-100" : "bg-green-100"} text-gray-800 border overflow-hidden`}>
               <td className="p-4"><span>#{transaction.id}</span></td>
               <td><span className="line-clamp-1">{transaction.title}</span></td>
-              <td><span className="line-clamp-1">{transaction.creation_time}</span></td>
+              <td><span className="line-clamp-1">{new Date(transaction.creation_time).toLocaleTimeString()}</span></td>
               <td><span>{transaction.amount}</span></td>
               <td><Actions id={transaction.id} /></td>
             </tr>
