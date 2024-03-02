@@ -110,15 +110,15 @@ export const EditModal = ({id, setEditModalToggle, fetchUserTransactions}) => {
         <form onSubmit={handleEdit} name="editForm" className="flex flex-col gap-3">
           <div className="flex flex-col gap-2 relative">
             <label htmlFor="editDate" className="block text-white font-semibold">Date&nbsp;</label>
-            <input ref={editDateRef} max={new Date().toISOString().split("T")[0]} type="date" name="date" id="editDate" autoComplete="off" className="w-full bg-gray-100 dark:bg-gray-700 p-2 border border-gray-200 dark:border-gray-600 rounded-lg"/>
+            <input ref={editDateRef} max={new Date().toISOString().split("T")[0]} type="date" name="date" id="editDate" autoComplete="off" className="w-full bg-gray-100 dark:bg-gray-700 dark:text-white p-2 border border-gray-200 dark:border-gray-600 rounded-lg"/>
           </div>
           <div className="flex flex-col gap-2 relative">
             <label htmlFor="editTitle" className="block text-white font-semibold">Title&nbsp;</label>
-            <input ref={editTitleRef} type="text" name="title" id="editTitle" autoComplete="off" maxLength="30" className="w-full bg-gray-100 dark:bg-gray-700 p-2 border border-gray-200 dark:border-gray-600 rounded-lg" />
+            <input ref={editTitleRef} type="text" name="title" id="editTitle" autoComplete="off" maxLength="30" className="w-full bg-gray-100 dark:bg-gray-700 dark:text-white p-2 border border-gray-200 dark:border-gray-600 rounded-lg" />
           </div>
           <div className="flex flex-col gap-2 relative">
             <label htmlFor="editAmount" className="block text-white font-semibold">Amount&nbsp;</label>
-            <input ref={editAmountRef} type="number" name="amount" id="editAmount" autoComplete="off" className="w-full bg-gray-100 dark:bg-gray-700 p-2 border border-gray-200 dark:border-gray-600 rounded-lg" />
+            <input ref={editAmountRef} type="number" name="amount" id="editAmount" autoComplete="off" className="w-full bg-gray-100 dark:bg-gray-700 dark:text-white p-2 border border-gray-200 dark:border-gray-600 rounded-lg" />
           </div>
           <button className="bg-blue-600 hover:bg-blue-500 text-white font-semibold focus:ring-4 p-2 mt-5 rounded-lg">Edit Transaction</button>
         </form>
