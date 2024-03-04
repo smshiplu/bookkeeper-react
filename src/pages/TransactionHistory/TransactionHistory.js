@@ -8,23 +8,23 @@ import { Timeline } from "./components/Timeline";
 
 import { getUserTransactions } from "../../services";
 
+import { useTransaction } from "../../contexts";
 
 export const TransactionHistory = () => {
+  const { setTransactionListCtx, transactionListCtx, setTimelineListCtx } = useTransaction();
   useDocTitle("History");
-  const [transactions, setTransactions] = useState([]);
   const [loading, setLoading] = useState(false);
   const [creationDates, setCreationDates] = useState([]);
   const [years, setYears] = useState([]);
-  const [timelineObject, setTimelineObject] = useState([]);
 
   useEffect(() => {
     const fetchUserTransaction = async () => {
+      setLoading(true);
       try {
-        setLoading(true);
         const data = await getUserTransactions();
         
         if(data.length > 0) {
-          setTransactions(data);
+          setTransactionListCtx(data);
           setLoading(false);
         } else {
           setLoading(false);
@@ -37,16 +37,17 @@ export const TransactionHistory = () => {
       }
     }
     fetchUserTransaction();
-  }, []); //eslint-disable-line
+  }, []); //eslint-disable-line  
 
   useEffect(() => {
+
     const allTransactionDates = () => {
-      const creationDates =  transactions.map(item => item["creation_date"]);
+      const creationDates =  transactionListCtx.map(item => item["creation_date"]);
       const uniqueDates =  [...new Set(creationDates)];
       setCreationDates(uniqueDates);
     }
     allTransactionDates();
-  }, [transactions]);
+  }, [transactionListCtx]);
     
   
   useEffect(() => {
@@ -87,12 +88,11 @@ export const TransactionHistory = () => {
       const months = getMonthsByYear(year);
       for(const month of months) {
         const dates = getDatesByMonthAndYear(month, year);
-        ObjArr.push({year, month, dates})
+        ObjArr.push({year, month, dates});
       }
     }
-    setTimelineObject(ObjArr);
-  }, [creationDates, years]);
-  
+    setTimelineListCtx(ObjArr);
+  }, [creationDates, years]); // eslint-disable-line
 
   return (
     <main>
@@ -102,7 +102,7 @@ export const TransactionHistory = () => {
       <section className="text-gray-800 dark:text-gray-100 text-center mb-10">
         <h3 className="text-2xl font-bold underline underline-offset-8">Transaction History</h3>
       </section>
-      <Timeline timelineObject={timelineObject} transactions={transactions} />
+      <Timeline />
     </main>
   )
 }

@@ -4,10 +4,12 @@ import { FaTimes } from "react-icons/fa";
 
 import { Loading } from "./Loading";
 
-import { getTransaction, editTransaction } from "../../services";
+import { getUserTransactions, getTransaction, editTransaction } from "../../services";
+import { useTransaction } from "../../contexts";
 
 
-export const EditModal = ({id, setEditModalToggle, fetchUserTransactions}) => {
+export const EditModal = ({id, setEditModalToggle}) => {
+  const {setTransactionListCtx} = useTransaction();
   const [transaction, setTransaction] = useState({});
   const [showLoading, setShowLoading] = useState(false);
 
@@ -17,8 +19,8 @@ export const EditModal = ({id, setEditModalToggle, fetchUserTransactions}) => {
 
   useEffect(() => {
     const fetchTransaction = async () => {
+      setShowLoading(true);
       try {
-        setShowLoading(true);
         const data = await getTransaction(id);
         setTransaction(data);
         
@@ -48,34 +50,35 @@ export const EditModal = ({id, setEditModalToggle, fetchUserTransactions}) => {
     e.preventDefault();
     const validation = validate();
     if(validation) {
+      setShowLoading(true);
       try {
         const dataToEdit = {
           title: editTitleRef.current.value,
           amount: editAmountRef.current.value,
-          user:transaction.user,
+          user: transaction.user,
           creation_date: new Date(editDateRef.current.value).toLocaleDateString(),
           creation_time: new Date().toLocaleTimeString()
         }
         
         const data = await editTransaction(transaction.id, dataToEdit);
         if(data) {
-          if(document.getElementById(id)) {
-            const trEl = Array.from(document.getElementById(id).children);
-            const trChildren = trEl.filter((item, idx) => idx !== trEl.length - 1);
-            trChildren[0].firstChild.innerText = `#${id}`;
-            trChildren[1].firstChild.innerText = `${dataToEdit.title}`;
-            trChildren[2].firstChild.innerText = `${dataToEdit.creation_time}`;
-            trChildren[3].firstChild.innerText = `${dataToEdit.amount}`;
-          } else {
-            fetchUserTransactions();
+          setShowLoading(false);
+          setShowLoading(true);
+          try {
+            const data = await getUserTransactions();
+            setShowLoading(false);
+            setTransactionListCtx(data);
+          } catch (error) {
+            setShowLoading(false);
           }
-          
           setEditModalToggle(false);
           toast.success("Transaction Updated Successfully!");
         } else {
+          setShowLoading(false);
           toast.error(data);
         }
       } catch(error) {
+        setShowLoading(false);
         toast.error(error.message);
       }
     }

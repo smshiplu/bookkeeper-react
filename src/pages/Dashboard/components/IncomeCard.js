@@ -42,7 +42,7 @@ export const IncomeCard = ({income, fetchUserTransactions}) => {
         </span>
       </p>
     </li>
-    {editModalToggle && <EditModal id={id} setEditModalToggle={setEditModalToggle} fetchUserTransactions={fetchUserTransactions} />}
+    {editModalToggle && <EditModal id={id} setEditModalToggle={setEditModalToggle} />}
     </>
   )
 }

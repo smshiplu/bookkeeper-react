@@ -5,9 +5,12 @@ import { BiEdit, BiTrash} from "react-icons/bi";
 import { EditModal } from "../../../components";
 
 import { deleteTransaction } from "../../../services";
-
+import { useTransaction } from "../../../contexts";
 
 export const Actions = ({id}) => {
+
+  const { deleteTransactionCtx } = useTransaction();
+
   const [editModalToggle, setEditModalToggle] = useState(false);
   
   const showEditModal = () => {
@@ -18,8 +21,10 @@ export const Actions = ({id}) => {
     if(window.confirm(`Are you sure to delete the item ID: #${id}?`)) {
       try {
         const data = await deleteTransaction(id);
+        deleteTransactionCtx(id);
         if(data) {
-          document.getElementById(id).remove();
+          // document.getElementById(id).remove();
+          
           toast.success("Item deleted!");
         } else {
           toast.error(data);

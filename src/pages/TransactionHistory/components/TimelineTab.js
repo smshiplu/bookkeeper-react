@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { GiTakeMyMoney, GiReceiveMoney, GiPayMoney  } from "react-icons/gi";
 
-import { TimelineTabCard } from "./TimelineTabCard";
+import { TimelineTabBtnCard } from "./TimelineTabBtnCard";
 import { TimelineTabResultCard } from "./TimelineTabResultCard";
 
 export const TimelineTab = ({transactionsAccordingDate}) => {
@@ -18,7 +18,7 @@ export const TimelineTab = ({transactionsAccordingDate}) => {
       <div className="md:flex">
         <ul className="flex-column space-y space-y-4 text-sm font-medium text-gray-500 dark:text-gray-400 md:me-4 mb-4 md:mb-0">
           {tabs.map(tab => (
-            <TimelineTabCard key={tab.id} tab={tab} activeToggle={activeToggle} setActiveToggle={setActiveToggle} />
+            <TimelineTabBtnCard key={tab.id} tab={tab} activeToggle={activeToggle} setActiveToggle={setActiveToggle} />
           ))}
         </ul>
         <TimelineTabResultCard activeToggle={activeToggle} transactionsAccordingDate={transactionsAccordingDate} />

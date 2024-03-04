@@ -3,15 +3,21 @@ import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 
 import { TimelineTab } from "./TimelineTab";
 
-export const TimelineDateCard = ({date, month, year, transactions}) => {
+import { useTransaction } from "../../../contexts";
+
+export const TimelineDateCard = ({date, month, year}) => {
+
+  const { transactionListCtx } = useTransaction();
+
   const [accordionToggle, setAccordionToggle] = useState(false);
   const [transactionsAccordingDate, setTransactionsAccordingDate] = useState([]);
 
   useEffect(() => {
     const creationDate = `${month}/${date}/${year}`;
-    const transactionOnDate = transactions.filter(item => item.creation_date === creationDate);
-    setTransactionsAccordingDate(transactionOnDate);
-  }, [date, month, year, transactions]);
+    const transactionsOfDate = transactionListCtx.filter(item => item.creation_date === creationDate);
+    setTransactionsAccordingDate(transactionsOfDate);
+    setAccordionToggle(false);
+  }, [date, month, year, transactionListCtx]);
 
   return (
     <li className={`${accordionToggle ? "my-10" : "mb-5"} ms-4`}>

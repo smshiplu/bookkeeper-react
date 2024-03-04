@@ -3,19 +3,23 @@ import { FaAngleDown, FaAngleUp } from "react-icons/fa";
 
 import { TimelineDateCard } from "./TimelineDateCard";
 
-export const TimelineMonthCard = ({month, year, timelineObject, transactions}) => {
+import { useTransaction } from "../../../contexts";
+
+export const TimelineMonthCard = ({month, year}) => {
+
+  const { timelineListCtx } = useTransaction();
 
   const [accordionToggle, setAccordionToggle] = useState(false);
   const [dates, setDates] = useState([]);
 
   useEffect(() => {
-    timelineObject.forEach(item => {
+    timelineListCtx.forEach(item => {
       if(item.month === month && item.year === year) {
         setDates(item.dates.sort((a, b) => a -b));
       }
     });
     
-  }, [ month, year, timelineObject]);
+  }, [ month, year, timelineListCtx]);
 
  
 
@@ -123,7 +127,7 @@ export const TimelineMonthCard = ({month, year, timelineObject, transactions}) =
       {accordionToggle && 
         <ol className="my-5 relative border-s border-gray-200 dark:border-gray-700">                  
           {dates.map((date, idx) => (
-             <TimelineDateCard key={idx} date={date}  month={month} year={year} transactions={transactions} />
+             <TimelineDateCard key={idx} date={date}  month={month} year={year} />
           ))}
         </ol>
       }

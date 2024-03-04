@@ -3,25 +3,30 @@ import { FaRegCalendar, FaPlus, FaMinus} from "react-icons/fa";
 
 import { TimelineMonthCard } from "./TimelineMonthCard";
 
-export const TimelineCard = ({year, timelineObject, transactions}) => {
+import { useTransaction } from "../../../contexts";
+
+export const TimelineCard = ({year}) => {
+
+  const  {timelineListCtx } = useTransaction();
 
   const [accordionToggle, setAccordionToggle] = useState(false);
   const [months, setMonths] = useState([]);
 
   useEffect(() => {
     const tempMonths = [];
-    timelineObject.forEach(item => {
+    timelineListCtx.forEach(item => {
       if(item.year === year) {
         tempMonths.push(item.month)
       }
     });
     const sortedMonths = tempMonths.sort((a,b) => a -b);
     setMonths(sortedMonths);
-  }, [year, timelineObject]);
+
+  }, [year, timelineListCtx]);
 
   return (
                   
-    <li className="mb-5 ms-6">
+    <li className="mb-5 ms-6" >
       <span className="absolute flex items-center justify-center w-6 h-6 bg-blue-100 rounded-full -start-3 ring-8 ring-white dark:ring-gray-900 dark:bg-blue-900 mt-2">
         <FaRegCalendar className=" text-blue-800 dark:text-blue-300"/>
       </span>
@@ -32,7 +37,7 @@ export const TimelineCard = ({year, timelineObject, transactions}) => {
       </button>
       {accordionToggle && <ol className="my-5 relative border-s border-gray-200 dark:border-gray-700">
         {months.map((month, idx) => (
-          <TimelineMonthCard key={idx} month={month} year={year} timelineObject={timelineObject} transactions={transactions} />
+          <TimelineMonthCard key={idx} month={month} year={year} />
         ))}
       </ol>}
       
