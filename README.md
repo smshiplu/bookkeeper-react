@@ -1,70 +1,107 @@
-# Getting Started with Create React App
+# 🧾 Bookkeeping Web App
+A sleek and practical bookkeeping application built with React, Redux, and Tailwind CSS—designed to help users track and manage their financial transactions with ease. The app allows users to track and manage their transactions, with a feature to filter transactions by date. It also includes an option to generate reports based on transaction data, helping users keep a clear overview of their incomes and expenses. This project uses a mock JSON server to simulate backend functionality, making it ideal for demonstrating frontend architecture, state management, and user experience design.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<br>
 
-## Available Scripts
+## 🚀 Features
+- Transaction Management: Add, edit, and delete income and expense entries.
+- Date-Based Filtering: View transactions by specific dates to analyze spending patterns.
+- Report Generation: Summarize financial activity to get a clear picture of income vs. expenses.
+- JWT-Based Authentication: Simulated login flow to demonstrate secure access patterns.
+- Responsive UI: Tailwind-powered design for clean, mobile-friendly layouts.
 
-In the project directory, you can run:
+<br>
 
-### `npm start`
+## 🛠️ Tech Stack
+- Frontend: React.js, Redux, Tailwind CSS, HTML
+- Mock Backend: JSON Server
+- Authentication Flow: JWT (simulated)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+<br/>
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📚 What I Learned
+This project helped me deepen my understanding of frontend architecture and simulated backend integration. Key takeaways include:
+- State Management with Redux: I learned how to structure and manage complex application state across components, improving scalability and maintainability.
+- JWT Authentication Flow: Implementing a simulated login system gave me hands-on experience with token-based authentication and protected routes.
+- Mock Backend with JSON Server: Using JSON Server taught me how to simulate RESTful APIs, enabling rapid prototyping and frontend testing without a real backend.
+- Date Filtering Logic: Building the date-based transaction filter sharpened my skills in handling dynamic data queries and conditional rendering.
+- Report Generation: Designing the reporting feature helped me practice data aggregation and presentation techniques for user insights.
+- Responsive UI Design: Tailwind CSS allowed me to create clean, mobile-friendly layouts while reinforcing utility-first styling principles.
+- Environment Configuration: Setting up .env variables improved my understanding of separating config from code for flexibility and security
 
-### `npm test`
+<br>
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 📦 Installation Guide
 
-### `npm run build`
+### Step 1: Frontend
+```
+# Clone the repo
+git clone https://github.com/smshiplu/bookkeeper-react.git
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+# Install dependencies
+cd bookkeeper-react
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Step 2: Backend
+```
+# Clone the repo
+git clone https://github.com/smshiplu/bookkeeper-mock-server.git
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+# Install dependencies
+cd bookkeeper-mock-server
+npm install
+```
 
-### `npm run eject`
+### Step 3: Set Up Environment Variable
+Create an .env file in the project root and paste variables.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```
+REACT_APP_HOST=http://localhost:8000
+REACT_APP_GUEST_EMAIL=nasir@example.com
+REACT_APP_GUEST_PASSWORD=random
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### Step 4: Start the Mock Backend (JSON Server)
+```
+# Start Backend
+cd bookkeeper-mock-server
+npm start
+```
+This will launch the backend at `http://localhost:8000`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### Step 5: Start the Frontend (JSON Server)
+```
+# Start Frontend
+cd bookkeeper-react
+npm start
+```
+This will launch the app at` http://localhost:3000`
 
-## Learn More
+<br>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 🧪 Testing the App
+- Add transactions and categorize them as income or expense.
+- Use the date filter to view specific entries.
+- Generate reports to visualize financial summaries
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<br>
 
-### Code Splitting
+## 📸 Screenshots
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+![Bookkeeper App](./1-login-screenshot.png "Login Screen")
+---
+![Bookkeeper App](./2-dashboard-screenshot.png "Dashboard Screen")
+---
+![Bookkeeper App](./3-transections-history-screenshoot.png "Transactions history Screen")
+---
+![Bookkeeper App](./4-statement-generation-screenshoot.png "Statement generation Screen")
+---
+![Bookkeeper App](./5-transection-screenshoot.png "Statement Screen")
+---
+![Bookkeeper App](./6-menu-screenshot.png "Menu Screen")
+---
+![Bookkeeper App](./7-register-screenshoot.png "Register Screen")
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
